@@ -1,0 +1,21 @@
+{
+  "name": "win-screenrecord-stream",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin":{
+    "shukescreen-client":"./bin/startclient.cmd",
+    "shukescreen-server":"./bin/startserver.cmd"
+  },
+  "scripts":{
+    "start":"node ./client/app",
+    "startserver":"node ./server/app"
+
+  },
+  "dependencies": {
+    "jigsaw-eventemitter": "^1.0.9",
+    "jigsaw-tcp": "github:zhymc/jigsaw-tcp",
+    "jigsaw.js": "^5.2.0",
+    "node-flv": "^0.9.4"
+  }
+}
