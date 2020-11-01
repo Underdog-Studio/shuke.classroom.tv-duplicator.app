@@ -1,15 +1,12 @@
 {
-  "name": "win-screenrecord-stream",
+  "name": "shuke.classroom.tv-duplicator.client",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "bin":{
-    "shukescreen-client":"./bin/startclient.cmd",
-    "shukescreen-server":"./bin/startserver.cmd"
+  "bin": {
+    "shukedupl": "./bin/start.cmd"
   },
-  "scripts":{
-    "start":"node ./client/app",
-    "startserver":"node ./server/app"
+  "scripts": {
 
   },
   "dependencies": {
