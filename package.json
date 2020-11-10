@@ -7,6 +7,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "cz-conventional-changelog": "^3.3.0",
     "jigsaw-eventemitter": "^1.0.9",
     "jigsaw-tcp": "github:zhymc/jigsaw-tcp",
     "jigsaw.js": "^5.2.0",

@@ -1,7 +1,7 @@
 const assert = require("assert");
 const os=require("os");
 const sleep=require("util").promisify(setTimeout);
-const config=require("./config");
+const config=require("../config");
 
 const roomid = process.argv[2];
 assert(roomid,"房间id 必须提供");

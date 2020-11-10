@@ -14,7 +14,7 @@ const util=require("util");
 const sleep=util.promisify(setTimeout);
 const EventEmitter=require("events").EventEmitter;
 const net=require("net");
-const config=require("./config");
+const config=require("../config");
 
 class PlayerClient extends EventEmitter{
 	constructor(option){
