@@ -1,6 +1,6 @@
 const os=require("os");
 const assert=require("assert");
-
+const meow=require("meow");
 const GetJigsaw=require("jigsaw.js");
 const {TCPClient,TCPServer,getLocalAddress}=require("jigsaw-tcp");
 
@@ -14,6 +14,7 @@ const util=require("util");
 const sleep=util.promisify(setTimeout);
 const EventEmitter=require("events").EventEmitter;
 const net=require("net");
+const config=require("./config");
 
 class PlayerClient extends EventEmitter{
 	constructor(option){
@@ -69,7 +70,7 @@ class PlayerClient extends EventEmitter{
 				throw new Error("已经停止连接");
 
 			try{
-				console.log("获取头部中...")
+				console.log("获取头部中...",`${this.monitor}:getheader`)
 				this.header=Buffer.from(await this.jg.send(`${this.monitor}:getheader`),"base64");
 				console.log("获取到头部",this.header);
 
@@ -130,10 +131,13 @@ class PlayerClient extends EventEmitter{
 	client.start();
 })*/
 
-let {jigsaw} = GetJigsaw(getLocalAddress(),"10.255.32.132");
+console.log("entry : ",getLocalAddress())
+let {jigsaw} = GetJigsaw(getLocalAddress(),config.domain_server);
 
 let jg = new jigsaw(`shuke.classroom.tv-duplicator.slave.${roomid}.${tvname}`);
 let dupl_state = 0;
+
+jg.port("ping",()=>("yes"));
 
 let dupl_player;
 
@@ -143,12 +147,12 @@ async function workLoop(){
 			let dupl_info=await jg.send(`shuke.classroom.tv-duplicator.${roomid}:getDuplInfo`,{tvname});
 			if(!dupl_info)
 				throw new Error("无法获取到分发信息");
-			//console.log(dupl_info,dupl_state);
+
 
 			if(dupl_info.type == 1 && dupl_state == 0){
 				dupl_player = new PlayerClient({
 					monitor:`shuke.classroom.tv-duplicator.host.${roomid}.${dupl_info.host}`,
-					domserver:"10.255.32.132",
+					domserver:config.domain_server,
 					entry:getLocalAddress()
 				});
 				dupl_state = 1;
@@ -161,7 +165,7 @@ async function workLoop(){
 			}
 	
 		}catch(err){
-			//console.error(err.message);
+			console.error(err.message);
 		}
 
 		await sleep(1000);

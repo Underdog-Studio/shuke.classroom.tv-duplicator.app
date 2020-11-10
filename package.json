@@ -1,18 +1,16 @@
 {
   "name": "shuke.classroom.tv-duplicator.client",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.4",
+  "main": "app.js",
   "license": "MIT",
-  "bin": {
-    "shukedupl": "./bin/start.cmd"
-  },
   "scripts": {
-
+    "start": "node app.js"
   },
   "dependencies": {
     "jigsaw-eventemitter": "^1.0.9",
     "jigsaw-tcp": "github:zhymc/jigsaw-tcp",
     "jigsaw.js": "^5.2.0",
+    "meow": "^8.0.0",
     "node-flv": "^0.9.4"
   }
 }
