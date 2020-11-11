@@ -23,6 +23,8 @@ class PlayerClient extends EventEmitter{
 		assert(option.monitor);
 		assert(option.domserver);
 		assert(option.entry);
+		assert(option.ffplay_path);
+		
 
 		this.option=option;
 		this.monitor=this.option.monitor;
@@ -35,7 +37,7 @@ class PlayerClient extends EventEmitter{
 		if(this.state!="close")
 			throw new Error("at this state,can not do start");
 
-		this.player=new Player();
+		this.player=new Player(this.option.ffplay_path);
 		this.name="client-"+(Math.random()+"").substr(-5,5);
 
 	
@@ -148,12 +150,12 @@ async function workLoop(){
 			if(!dupl_info)
 				throw new Error("无法获取到分发信息");
 
-
 			if(dupl_info.type == 1 && dupl_state == 0){
 				dupl_player = new PlayerClient({
 					monitor:`shuke.classroom.tv-duplicator.host.${roomid}.${dupl_info.host}`,
 					domserver:config.domain_server,
-					entry:getLocalAddress()
+					entry:getLocalAddress(),
+					ffplay_path:__dirname + "/../ffmpeg/ffplay"
 				});
 				dupl_state = 1;
 				console.log("播放器已打开");
