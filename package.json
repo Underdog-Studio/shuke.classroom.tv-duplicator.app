@@ -9,9 +9,10 @@
   "dependencies": {
     "cz-conventional-changelog": "^3.3.0",
     "jigsaw-eventemitter": "^1.0.9",
-    "jigsaw-tcp": "github:zhymc/jigsaw-tcp",
+    "jigsaw-tcp": "^1.0.1",
     "jigsaw.js": "^5.2.0",
     "meow": "^8.0.0",
-    "node-flv": "^0.9.4"
+    "node-flv": "^0.9.4",
+    "pm2": "^4.5.0"
   }
 }

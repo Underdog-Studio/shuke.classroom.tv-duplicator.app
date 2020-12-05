@@ -41,7 +41,9 @@ class StreamHost extends EventEmitter{
 //		this.header=null;
 
 		//this.ff=spawn("ffmpeg",["-rtbufsize","100MB","-f","dshow","-framerate","30","-i","video=screen-capture-dxgi-qq35744025","-b","10M","-preset","ultrafast","-crf","0","-f","flv","-"]);
-		this.ff=spawn(Path.join(__dirname,"DesktopStream"));
+		this.ff=spawn(Path.join(__dirname,"DesktopStream"),[],{
+			windowsHide:true
+		});
 		this.ff.on("close",()=>{
 			console.log("exit");
 			this._onFFExit();
